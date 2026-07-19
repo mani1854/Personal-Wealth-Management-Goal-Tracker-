@@ -126,6 +126,4 @@ App runs at: **http://localhost:5173**
 
 ---
 
-## 🤝 License
 
-MIT
