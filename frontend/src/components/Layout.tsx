@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Target, Briefcase, LogOut, Wallet, Calculator } from 'lucide-react';
+import { LayoutDashboard, Target, Briefcase, LogOut, Wallet, Calculator, Lightbulb } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Layout = () => {
@@ -12,6 +12,7 @@ const Layout = () => {
     { name: 'Goals', path: '/goals', icon: Target },
     { name: 'Portfolio', path: '/portfolio', icon: Briefcase },
     { name: 'Simulations', path: '/simulations', icon: Calculator },
+    { name: 'AI Advisor', path: '/advisor', icon: Lightbulb },
   ];
 
   return (

@@ -1,3 +1,8 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
@@ -43,13 +48,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from api import goals, investments, market, simulations, dashboard
+from api import goals, investments, market, simulations, dashboard, ai
 
 app.include_router(goals.router)
 app.include_router(investments.router)
 app.include_router(market.router)
 app.include_router(simulations.router)
 app.include_router(dashboard.router)
+app.include_router(ai.router)
 
 @app.post("/register", response_model=schemas.UserResponse, status_code=status.HTTP_201_CREATED)
 def register(user: schemas.UserCreate, db: Session = Depends(get_db)):

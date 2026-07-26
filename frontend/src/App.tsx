@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Goals from './pages/Goals';
 import Portfolio from './pages/Portfolio';
 import Simulations from './pages/Simulations';
+import Advisor from './pages/Advisor';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/goals" element={<Goals />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/simulations" element={<Simulations />} />
+            <Route path="/advisor" element={<Advisor />} />
           </Route>
         </Routes>
       </Router>
