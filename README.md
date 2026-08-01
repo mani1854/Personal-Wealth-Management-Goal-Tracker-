@@ -14,12 +14,10 @@
 | 💼 Portfolio | Buy/sell stocks with live prices via Yahoo Finance |
 | 🧮 Simulations | Monte Carlo retirement projections (10,000 scenarios) |
 | 📈 Predictions | 7-day ML stock price forecasting (Ridge Regression) |
-| 🤖 AI Advisor | GPT-powered personalized financial report |
-| 💬 AI Chatbot | **Advanced Groq agent with 6 financial tools + memory** |
+| 🤖 AI Chatbot | **Advanced Groq agent with 6 financial tools + memory** |
 | 📰 Market News | AI-summarized news with portfolio impact analysis |
 | 🎯 Goal Recommender | AI-optimized SIP recommendations based on income/expenses |
 | 💼 Portfolio Recommender | Content-based stock/ETF suggestions |
-| 🔍 NL Search | Natural language portfolio search (*"show my losing stocks"*) |
 
 ---
 
@@ -101,10 +99,8 @@ goal-tracker-project/
 │   │   │       ├── market_tool.py     # Live price + ML forecast tool
 │   │   │       ├── tax_tool.py        # STCG/LTCG calculator tool
 │   │   │       └── rebalancer_tool.py # Portfolio rebalancer tool
-│   │   ├── advisor.py                 # OpenAI financial report
 │   │   ├── goal_recommender.py        # AI goal recommendations
 │   │   ├── news_summarizer.py         # Market news + AI summary
-│   │   ├── nl_search.py               # Natural language search
 │   │   └── portfolio_recommender.py   # Stock/ETF suggestions
 │   ├── ml/
 │   │   ├── price_predictor.py         # Ridge Regression forecaster
@@ -124,12 +120,10 @@ goal-tracker-project/
 │           ├── Portfolio.tsx          # Investment tracking
 │           ├── Simulations.tsx        # Monte Carlo UI
 │           ├── Predictions.tsx        # ML price forecast UI
-│           ├── Advisor.tsx            # AI financial report
 │           ├── Chatbot.tsx            # Advanced AI agent chat
 │           ├── News.tsx               # Market news
 │           ├── GoalRecommender.tsx    # SIP recommendations
-│           ├── PortfolioRecommender.tsx # Stock suggestions
-│           └── NLSearch.tsx           # Natural language search
+│           └── PortfolioRecommender.tsx # Stock suggestions
 └── docker-compose.yml
 ```
 
@@ -203,13 +197,11 @@ docker-compose up --build
 | POST | `/transactions` | Buy/sell stocks |
 | POST | `/market/sync` | Sync live prices |
 | POST | `/ai/agent/chat` | **Advanced Groq agent** |
-| GET | `/ai/insights` | AI financial report |
 | GET | `/ai/predict/{symbol}` | ML price prediction |
 | POST | `/simulations/` | Monte Carlo simulation |
 | GET | `/ai/news` | AI market news summary |
 | POST | `/ai/goals/recommend` | Goal recommendations |
 | GET | `/ai/recommendations/portfolio` | Portfolio suggestions |
-| POST | `/ai/search` | Natural language search |
 | GET | `/ai/dashboard` | Risk + fraud + sentiment |
 
 ---
