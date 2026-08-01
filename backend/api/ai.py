@@ -8,13 +8,10 @@ from database import get_db
 from models import User
 from auth import get_current_user
 from services.user_context import get_user_context
-from ai.advisor import generate_insights
 from ai.goal_recommender import recommend_goals
 from ai.portfolio_recommender import recommend_portfolio
-from ai.rag_chatbot import chat, clear_history
 from ai.advanced_chatbot.agent import agent_chat, clear_agent_memory
 from ai.news_summarizer import summarize_news
-from ai.nl_search import search_portfolio
 from ml.risk_predictor import predict_portfolio_risk
 from ml.price_predictor import predict_stock_price
 from ml.fraud_detector import detect_fraud
@@ -24,21 +21,6 @@ from services.goal_tracker import goal_achievement_probability
 from services.portfolio_engine import get_portfolio_summary
 
 router = APIRouter(prefix="/ai", tags=["ai"])
-
-
-class InsightResponse(BaseModel):
-    insights: str
-    structured: dict
-
-
-class ChatRequest(BaseModel):
-    message: str
-
-
-class ChatResponse(BaseModel):
-    reply: str
-    sources: list[str]
-    model: str
 
 
 class GoalRecommendRequest(BaseModel):
@@ -52,17 +34,6 @@ class MonteCarloRequest(BaseModel):
     years: int = Field(10, ge=1, le=40)
     goal_amount: Optional[float] = None
     simulations: int = Field(2000, ge=100, le=10000)
-
-
-class SearchRequest(BaseModel):
-    query: str
-
-
-@router.get("/insights", response_model=InsightResponse)
-def get_insights(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    ctx = get_user_context(db, current_user)
-    result = generate_insights(ctx)
-    return result
 
 
 @router.get("/risk")
@@ -96,24 +67,6 @@ def get_portfolio_recommendations(
 ):
     ctx = get_user_context(db, current_user)
     return recommend_portfolio(ctx)
-
-
-@router.post("/chat", response_model=ChatResponse)
-def ai_chat(
-    body: ChatRequest,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user),
-):
-    ctx = get_user_context(db, current_user)
-    result = chat(current_user.id, ctx, body.message)
-    return result
-
-
-@router.delete("/chat/history")
-def clear_chat_history(current_user: User = Depends(get_current_user)):
-    clear_history(current_user.id)
-    clear_agent_memory(current_user.id)
-    return {"status": "cleared"}
 
 
 class AgentChatRequest(BaseModel):
@@ -153,16 +106,6 @@ def get_fraud_analysis(db: Session = Depends(get_db), current_user: User = Depen
 @router.get("/sentiment/{symbol}")
 def get_sentiment(symbol: str, current_user: User = Depends(get_current_user)):
     return analyze_sentiment(symbol)
-
-
-@router.post("/search")
-def nl_portfolio_search(
-    body: SearchRequest,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user),
-):
-    ctx = get_user_context(db, current_user)
-    return search_portfolio(ctx, body.query)
 
 
 @router.post("/monte-carlo")

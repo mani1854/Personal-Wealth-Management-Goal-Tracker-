@@ -15,13 +15,11 @@ const Layout = () => {
   ];
 
   const aiNavItems = [
-    { name: 'AI Advisor', path: '/advisor', icon: Lightbulb },
     { name: 'Predictions', path: '/predictions', icon: TrendingUp },
     { name: 'AI Chatbot', path: '/chatbot', icon: Bot },
     { name: 'Market News', path: '/news', icon: Newspaper },
     { name: 'Goal Recommender', path: '/goal-recommender', icon: Sparkles },
     { name: 'Portfolio Recs', path: '/portfolio-recommender', icon: Briefcase },
-    { name: 'NL Search', path: '/search', icon: Search },
   ];
 
   return (
