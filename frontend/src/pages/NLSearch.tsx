@@ -126,7 +126,7 @@ export default function NLSearch() {
           </div>
 
           {/* Results Table */}
-          {data.matched_holdings.length > 0 ? (
+          {(data.matched_holdings?.length ?? 0) > 0 ? (
             <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden">
               <table className="w-full text-sm">
                 <thead>

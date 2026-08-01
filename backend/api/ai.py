@@ -12,6 +12,7 @@ from ai.advisor import generate_insights
 from ai.goal_recommender import recommend_goals
 from ai.portfolio_recommender import recommend_portfolio
 from ai.rag_chatbot import chat, clear_history
+from ai.advanced_chatbot.agent import agent_chat, clear_agent_memory
 from ai.news_summarizer import summarize_news
 from ai.nl_search import search_portfolio
 from ml.risk_predictor import predict_portfolio_risk
@@ -111,7 +112,30 @@ def ai_chat(
 @router.delete("/chat/history")
 def clear_chat_history(current_user: User = Depends(get_current_user)):
     clear_history(current_user.id)
+    clear_agent_memory(current_user.id)
     return {"status": "cleared"}
+
+
+class AgentChatRequest(BaseModel):
+    message: str
+
+
+@router.post("/agent/chat")
+def advanced_agent_chat(
+    body: AgentChatRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Advanced tool-calling AI agent with intent classification and memory."""
+    ctx = get_user_context(db, current_user)
+    result = agent_chat(current_user.id, ctx, body.message)
+    return result
+
+
+@router.delete("/agent/memory")
+def clear_agent_chat_memory(current_user: User = Depends(get_current_user)):
+    clear_agent_memory(current_user.id)
+    return {"status": "memory cleared"}
 
 
 @router.get("/news")
