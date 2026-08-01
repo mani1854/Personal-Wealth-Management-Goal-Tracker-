@@ -11,6 +11,11 @@ import Portfolio from './pages/Portfolio';
 import Simulations from './pages/Simulations';
 import Advisor from './pages/Advisor';
 import Predictions from './pages/Predictions';
+import Chatbot from './pages/Chatbot';
+import News from './pages/News';
+import GoalRecommender from './pages/GoalRecommender';
+import PortfolioRecommender from './pages/PortfolioRecommender';
+import NLSearch from './pages/NLSearch';
 
 function App() {
   return (
@@ -27,6 +32,11 @@ function App() {
             <Route path="/simulations" element={<Simulations />} />
             <Route path="/advisor" element={<Advisor />} />
             <Route path="/predictions" element={<Predictions />} />
+            <Route path="/chatbot" element={<Chatbot />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/goal-recommender" element={<GoalRecommender />} />
+            <Route path="/portfolio-recommender" element={<PortfolioRecommender />} />
+            <Route path="/search" element={<NLSearch />} />
           </Route>
         </Routes>
       </Router>

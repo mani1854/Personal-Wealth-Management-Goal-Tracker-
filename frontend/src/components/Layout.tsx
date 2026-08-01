@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Target, Briefcase, LogOut, Wallet, Calculator, Lightbulb, TrendingUp } from 'lucide-react';
+import { LayoutDashboard, Target, Briefcase, LogOut, Wallet, Calculator, Lightbulb, TrendingUp, Bot, Newspaper, Sparkles, Search } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Layout = () => {
@@ -12,8 +12,16 @@ const Layout = () => {
     { name: 'Goals', path: '/goals', icon: Target },
     { name: 'Portfolio', path: '/portfolio', icon: Briefcase },
     { name: 'Simulations', path: '/simulations', icon: Calculator },
+  ];
+
+  const aiNavItems = [
     { name: 'AI Advisor', path: '/advisor', icon: Lightbulb },
     { name: 'Predictions', path: '/predictions', icon: TrendingUp },
+    { name: 'AI Chatbot', path: '/chatbot', icon: Bot },
+    { name: 'Market News', path: '/news', icon: Newspaper },
+    { name: 'Goal Recommender', path: '/goal-recommender', icon: Sparkles },
+    { name: 'Portfolio Recs', path: '/portfolio-recommender', icon: Briefcase },
+    { name: 'NL Search', path: '/search', icon: Search },
   ];
 
   return (
@@ -27,7 +35,7 @@ const Layout = () => {
           <h1 className="font-bold text-xl tracking-tight">WealthTracker</h1>
         </div>
         
-        <nav className="flex-1 px-4 py-6 space-y-2">
+        <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
@@ -35,7 +43,30 @@ const Layout = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all ${
+                  isActive 
+                    ? 'bg-primary-500/10 text-primary-400 font-medium' 
+                    : 'text-gray-400 hover:bg-dark-border/50 hover:text-white'
+                }`}
+              >
+                <Icon className="w-5 h-5" />
+                {item.name}
+              </Link>
+            );
+          })}
+
+          <div className="pt-3 pb-1">
+            <p className="px-4 text-xs font-semibold uppercase tracking-widest text-gray-600">AI Tools</p>
+          </div>
+
+          {aiNavItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all ${
                   isActive 
                     ? 'bg-primary-500/10 text-primary-400 font-medium' 
                     : 'text-gray-400 hover:bg-dark-border/50 hover:text-white'
