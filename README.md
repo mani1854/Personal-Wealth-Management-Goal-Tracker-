@@ -206,18 +206,4 @@ docker-compose up --build
 
 ---
 
-## 💼 Resume Highlights (Built during Infosys Springboard Internship)
 
-- Engineered a **full-stack financial platform** with FastAPI + React serving **10+ REST APIs** with JWT-secured endpoints
-- Implemented **5 ML models** (Ridge Regression, Random Forest, Isolation Forest, Monte Carlo, VADER) reducing manual analysis time by ~80%
-- Built a **Groq-powered agentic chatbot** (llama-3.3-70b) with **6 financial tools**, intent classification, and rolling memory — answers natural language financial queries with live data in <2s
-- Designed **Monte Carlo simulation engine** running 10,000 scenarios to forecast goal achievement probability with P10/P50/P90 confidence intervals
-- Integrated **Yahoo Finance API** for real-time stock price sync across the entire portfolio with automated market data updates
-
----
-
-## 👨‍💻 Author
-
-**Manikandan** — Virtual Intern, Infosys Springboard (Feb 2026 – Present)
-
-[![GitHub](https://img.shields.io/badge/GitHub-mani1854-black?logo=github)](https://github.com/mani1854)
