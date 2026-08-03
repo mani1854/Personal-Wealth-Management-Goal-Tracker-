@@ -6,6 +6,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 interface PredictionData {
   symbol: string;
+  company_name: string;
   current_price: number;
   predicted_price: number;
   horizon_days: number;
@@ -87,6 +88,12 @@ export default function Predictions() {
       {data && (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
           
+          <div className="flex items-center gap-3">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{data.symbol}</h2>
+            <span className="text-gray-300 dark:text-gray-600">|</span>
+            <h3 className="text-lg font-medium text-gray-600 dark:text-gray-400">{data.company_name}</h3>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm">
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Current Price</p>

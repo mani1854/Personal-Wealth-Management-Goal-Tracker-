@@ -10,6 +10,10 @@ def predict_stock_price(symbol: str, horizon_days: int = 7) -> dict:
     symbol = normalize_symbol(raw_symbol)
     try:
         ticker = yf.Ticker(symbol)
+        try:
+            company_name = ticker.info.get("longName", ticker.info.get("shortName", raw_symbol))
+        except Exception:
+            company_name = raw_symbol
         hist = ticker.history(period="6mo")
         if hist.empty or len(hist) < 20:
             return {"symbol": symbol, "error": "Insufficient historical data"}
@@ -52,6 +56,7 @@ def predict_stock_price(symbol: str, horizon_days: int = 7) -> dict:
 
         return {
             "symbol": raw_symbol,
+            "company_name": company_name,
             "current_price": round(float(closes[-1]), 2),
             "predicted_price": predictions[-1]["price"],
             "horizon_days": horizon_days,
